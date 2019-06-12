@@ -41,7 +41,7 @@ for t3 in range(Tabela_Verdade):
 
 ################################################## - SAIDA - ###########################################################
 
-print('Saida Separade por espaço, Sua saida deve ter pelo menos',Tabela_Verdade,'Termos')
+print('Saida Separada por espaços, Sua saida deve ter pelo menos',Tabela_Verdade,'Termos')
 while (len(saida) > Tabela_Verdade) or (len(saida) < Tabela_Verdade): # Saida.
     saida = input().split(' ')
     if len(saida) > Tabela_Verdade:
@@ -59,6 +59,7 @@ for h1 in range(Tabela_Verdade):
 print('SAIDA VALIDAS',Saidas_Validas,'\n')
 
 ########################################## - SAIDA SEM SIMPLIFICAÇÃO - #################################################
+
 print('SAIDA SEM A SIMPLIFICAÇÃO: ',end='')
 for k0 in range(len(entradas)):
     if k0 == 0:
@@ -88,6 +89,7 @@ for k in range(len(Saidas_Validas)):
                 print(entradas[k1],end='')
 
 ############################################ - MONTAGEM DE GRUPOS - ####################################################
+
 reset = 0
 for j1 in range (len(Saidas_Validas)):# Indentificando os grupos
     modificador = Saidas_Validas[j1]
@@ -96,7 +98,6 @@ for j1 in range (len(Saidas_Validas)):# Indentificando os grupos
     if Soma_Dos_Grupos > reset:
         reset = Soma_Dos_Grupos
     Soma_Dos_Grupos = 0
-
 for j3 in range(reset+1):# Adicionando
     Sub_Grupos = []
     for j4 in range(len(Saidas_Validas)):
@@ -110,5 +111,10 @@ for j3 in range(reset+1):# Adicionando
     if len(Sub_Grupos) != 0:
         Grupos.append(Sub_Grupos)
     print(Grupos)
+print(len(Grupos))
 
-###################################
+########################################### - Comparação dos Grupos - ##################################################
+for l0 in range (len(Grupos)):#dividindo os grupos
+    for l1 in range(len(Grupos[l0])):# cada elemento do grupo:
+        a = 5
+
