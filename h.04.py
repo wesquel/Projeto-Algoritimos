@@ -1,5 +1,6 @@
 ################################################ - VARIAVEIS - #########################################################
 
+from copy import deepcopy
 print('Colocar ,as entradas, separadas por espaço.')
 entradas = input('Entradas: ').split(' ')  # Variaveis.
 saida = []  # Saidas.
@@ -12,6 +13,9 @@ Contagem = 0  # contagem dos grupos
 Soma_Dos_Grupos = 0
 Saidas_Validas = []
 numero = []
+Grupo_de_Simplificacão = []
+
+
 print(entradas)
 
 ######################################## - MONTAGEM DA TABELA VERDADE - ################################################
@@ -41,14 +45,14 @@ for t3 in range(Tabela_Verdade):
     print(lista2_verdade[t3])
 
 ################################################## - SAIDA - ###########################################################
-
+check = True
 print('Saida Separada por espaços, Sua saida deve ter pelo menos', Tabela_Verdade, 'Termos')
 while (len(saida) > Tabela_Verdade) or (len(saida) < Tabela_Verdade):  # Saida.
     saida = input().split(' ')
     if len(saida) > Tabela_Verdade:
-        print('O Numero de Termos na Saida é maior que o permitido.')
+        print('O numero de termos na saida possui',len(saida) - Tabela_Verdade,'a mais que o permitido.')
     elif len(saida) < Tabela_Verdade:
-        print('O Numero de Termos na Saida é menor que o permitido.')
+        print('O numero de termos na saida possui',Tabela_Verdade - len(saida), 'a menos que o permitido.')
 print('SAIDAS', saida)
 print('TABELA VERDADE 2', lista2_verdade)
 
@@ -117,14 +121,50 @@ for j3 in range(reset + 1):  # Adicionando
 print(len(Grupos))
 
 ################################################ - SIMPLIFICAÇÃO - #####################################################
+grupotest= []
+soma01 = 0
+soma0 = 0
+soma1 = 0
+soma2 = 0
+gruposempar = []
+Usados = []
 for l0 in range(len(Grupos)):  # dividindo os grupos
     modificador = Grupos[l0]  # GRUPOS
-    print('SUB GRUPO:', modificador,'\n')
+    print('MODIFICADOR',modificador)
+    print('SubGrupo:',l0, modificador)
+    print(l0,len(Grupos))
+    if soma01 != 0:
+        grupotest.append(Grupo_de_Simplificacão)
+        Grupo_de_Simplificacão = []
+        soma2 = 0
 
     for l1 in range(len(modificador)):
-        modificador_1 = modificador[l1]  # SUB GRUPOS
-        print('SELEÇAO:', l0, modificador_1, l1,'\n')
+        modificador_1 = modificador[l1]  # SUB
+        print('MODIFICADOR 1 ',modificador_1)
+        print(' SELEÇAO:', l0, modificador_1, l1)
 
-        for l2 in range(len(modificador_1)):
-            modificador_2 = modificador_1[l2]  # Cada Elemento do Sub Grupo
-            print('ELEMENTO:', modificador_2)
+        if l0 < len(Grupos) - 1:
+            for l2 in range (len(Grupos[l0+1])):
+                modificador_2 = Grupos[l0+1]
+                modificador_3 = modificador_2[l2]
+                for l3 in range(len(entradas)):
+                    if modificador_1[l3] != modificador_3[l3]:
+                        soma0 = soma0 + 1
+                        soma1 = l3
+                if soma0 == 1:
+                    print('grupos somados',modificador_1, modificador_3)
+                    Grupo_de_Simplificacão.append(deepcopy(modificador_1))
+                    Usados.append(deepcopy(modificador_3))
+                    Grupo_de_Simplificacão[soma2][soma1] = '-'
+                    soma2 = soma2 + 1
+                    print('sdasd',modificador_1)
+                    print('Grupo de Simplificaçao',Grupo_de_Simplificacão)
+                elif soma0 > 1:
+                    gruposempar.append(modificador_1)
+                    gruposempar.append(modificador_3)
+                soma0 = 0
+    soma01 = 1
+print(grupotest)
+print(Grupos)
+print(Usados)
+print(gruposempar)
