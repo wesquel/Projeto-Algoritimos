@@ -175,22 +175,35 @@ while True :
 
 print('Grupo de Simplificação',Grupo_de_Simplificacão)
 print('Grupo Inicial',GrupoInicial)
-print('asdasd',len(GrupoInicial[3]))
 print('Grupos',Grupos)
 print('Usados',Usados)
 print('grupo sem par',gruposempar)
 Grupos_Isolados = []
+
 for g0 in range(len(gruposempar)):
     Check_Grupos = False
+    Check_Isolados = False
     for g1 in range(len(Usados)):
         if gruposempar[g0] == Usados[g1]:
             Check_Grupos = True
-    if Check_Grupos == False:
+    for g2 in range(len(Grupos_Isolados)):
+        if gruposempar[g0] == Grupos_Isolados[g2]:
+            Check_Isolados = True
+    if (Check_Grupos == False) and (Check_Isolados == False):
         Grupos_Isolados.append(gruposempar[g0])
 print('Grupos Isolados: ',Grupos_Isolados)
 
-
+total = []
+separador = []
 for e0 in range(len(GrupoInicial)):
+    print(GrupoInicial[e0])
     if len(GrupoInicial[e0]) == 0:
         print(e0)
         print(GrupoInicial[1 + e0:])
+        separador.append(GrupoInicial[1+e0:])
+print(separador)
+total.append(Grupos_Isolados)
+print(total)
+print(len(GrupoInicial))
+print(GrupoInicial)
+print(total)
