@@ -31,3 +31,4 @@ for o in range(Numero_de_Saidas):
     n1 = input()
     saidas.append(n1)
 print(saidas)
+//232
